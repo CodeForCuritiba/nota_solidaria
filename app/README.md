@@ -25,5 +25,5 @@ Run `ionic server`
 ### On your phone
 
 1. Install Ionic View app on your phone
-2. `ionic upload`
+2. Run `ionic upload`
 3. On Ionic View app on your phone, `sync` app and `view`.
