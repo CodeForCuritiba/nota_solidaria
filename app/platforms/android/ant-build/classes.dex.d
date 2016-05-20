@@ -1,0 +1,23 @@
+/Users/tonyfreed/dev/GitHubProjects/IonicBarcodeScannerApp/platforms/android/ant-build/classes.dex : \
+/Users/tonyfreed/dev/GitHubProjects/IonicBarcodeScannerApp/platforms/android/ant-build/classes/com/ionic/keyboard/IonicKeyboard$1.class \
+/Users/tonyfreed/dev/GitHubProjects/IonicBarcodeScannerApp/platforms/android/ant-build/classes/com/ionic/keyboard/IonicKeyboard$2.class \
+/Users/tonyfreed/dev/GitHubProjects/IonicBarcodeScannerApp/platforms/android/ant-build/classes/com/ionic/keyboard/IonicKeyboard$3.class \
+/Users/tonyfreed/dev/GitHubProjects/IonicBarcodeScannerApp/platforms/android/ant-build/classes/com/ionic/keyboard/IonicKeyboard.class \
+/Users/tonyfreed/dev/GitHubProjects/IonicBarcodeScannerApp/platforms/android/ant-build/classes/com/ionicframework/ionicbarcodescannerapp822631/BuildConfig.class \
+/Users/tonyfreed/dev/GitHubProjects/IonicBarcodeScannerApp/platforms/android/ant-build/classes/com/ionicframework/ionicbarcodescannerapp822631/CordovaApp.class \
+/Users/tonyfreed/dev/GitHubProjects/IonicBarcodeScannerApp/platforms/android/ant-build/classes/com/ionicframework/ionicbarcodescannerapp822631/R$array.class \
+/Users/tonyfreed/dev/GitHubProjects/IonicBarcodeScannerApp/platforms/android/ant-build/classes/com/ionicframework/ionicbarcodescannerapp822631/R$attr.class \
+/Users/tonyfreed/dev/GitHubProjects/IonicBarcodeScannerApp/platforms/android/ant-build/classes/com/ionicframework/ionicbarcodescannerapp822631/R$color.class \
+/Users/tonyfreed/dev/GitHubProjects/IonicBarcodeScannerApp/platforms/android/ant-build/classes/com/ionicframework/ionicbarcodescannerapp822631/R$dimen.class \
+/Users/tonyfreed/dev/GitHubProjects/IonicBarcodeScannerApp/platforms/android/ant-build/classes/com/ionicframework/ionicbarcodescannerapp822631/R$drawable.class \
+/Users/tonyfreed/dev/GitHubProjects/IonicBarcodeScannerApp/platforms/android/ant-build/classes/com/ionicframework/ionicbarcodescannerapp822631/R$id.class \
+/Users/tonyfreed/dev/GitHubProjects/IonicBarcodeScannerApp/platforms/android/ant-build/classes/com/ionicframework/ionicbarcodescannerapp822631/R$layout.class \
+/Users/tonyfreed/dev/GitHubProjects/IonicBarcodeScannerApp/platforms/android/ant-build/classes/com/ionicframework/ionicbarcodescannerapp822631/R$menu.class \
+/Users/tonyfreed/dev/GitHubProjects/IonicBarcodeScannerApp/platforms/android/ant-build/classes/com/ionicframework/ionicbarcodescannerapp822631/R$raw.class \
+/Users/tonyfreed/dev/GitHubProjects/IonicBarcodeScannerApp/platforms/android/ant-build/classes/com/ionicframework/ionicbarcodescannerapp822631/R$string.class \
+/Users/tonyfreed/dev/GitHubProjects/IonicBarcodeScannerApp/platforms/android/ant-build/classes/com/ionicframework/ionicbarcodescannerapp822631/R$xml.class \
+/Users/tonyfreed/dev/GitHubProjects/IonicBarcodeScannerApp/platforms/android/ant-build/classes/com/ionicframework/ionicbarcodescannerapp822631/R.class \
+/Users/tonyfreed/dev/GitHubProjects/IonicBarcodeScannerApp/platforms/android/ant-build/classes/com/phonegap/plugins/barcodescanner/BarcodeScanner.class \
+/Users/tonyfreed/dev/GitHubProjects/IonicBarcodeScannerApp/platforms/android/ant-build/classes/org/apache/cordova/device/Device.class \
+/Users/tonyfreed/dev/GitHubProjects/IonicBarcodeScannerApp/platforms/android/ant-build/dexedLibs/classes-cebff44e2041b5dd4d8b548926b33d44.jar \
+/Users/tonyfreed/dev/GitHubProjects/IonicBarcodeScannerApp/platforms/android/ant-build/dexedLibs/com.google.zxing.client.android.captureactivity-da2e95d786a0594b72b58f108be9c10a.jar \
