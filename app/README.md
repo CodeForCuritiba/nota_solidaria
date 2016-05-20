@@ -1,6 +1,19 @@
 # Nota Solidária App
 Ionic project
 
+## How to install
+
+### Required
+
+- git https://git-scm.com/downloads
+- ionic framework http://ionicframework.com/getting-started
+
+### Installation
+
+- Upload project `git clone https://github.com/CodeForCuritiba/nota_solidaria.git`
+- Go to app directory `cd nota_solidaria/app`
+
+
 ## How to test
 
 ### In browser
