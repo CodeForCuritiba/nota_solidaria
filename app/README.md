@@ -19,8 +19,9 @@ Ionic project
 ### Test without install
 
 Install Ionic View app on your phone.
-App name: NotaSolidariaApp
-App id: e60de1bd
+
+- App name: NotaSolidariaApp
+- App id: e60de1bd
 
 ### In browser
 
