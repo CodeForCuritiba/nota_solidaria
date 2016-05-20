@@ -17,8 +17,10 @@ Ionic project
 ## How to test
 
 ### In browser
+
+Run `ionic server`
+
 * Note: scan doesn't work in browser
-`ionic server`
 
 ### On your phone
 
