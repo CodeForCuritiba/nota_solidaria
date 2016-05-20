@@ -16,6 +16,12 @@ Ionic project
 
 ## How to test
 
+### Test without install
+
+Install Ionic View app on your phone.
+App name: NotaSolidariaApp
+App id: e60de1bd
+
 ### In browser
 
 Run `ionic server`
