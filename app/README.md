@@ -18,9 +18,11 @@ Ionic project
 
 ### Test with Ionic View app
 
-Install Ionic View app on your phone.
+- Create an ionic.io account
+- Install Ionic View app on your phone
+- Get an invitation using `ionic share myemail@....`
 
-Ask one of the project dev to send you an invitation using `ionic share myemail@....`
+**[TODO] check if the process above is OK**
 
 For info:
 
