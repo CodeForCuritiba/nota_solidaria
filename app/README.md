@@ -16,9 +16,12 @@ Ionic project
 
 ## How to test
 
-### Test without install
+### Test with Ionic View app
 
 Install Ionic View app on your phone.
+Ask one of the project dev to send you an invitation using `ionic share myemail@....`
+
+For info:
 
 - App name: NotaSolidariaApp
 - App id: e60de1bd
