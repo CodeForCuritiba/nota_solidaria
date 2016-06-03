@@ -20,12 +20,17 @@ angular.module('starter', ['ionic','ngCordova'])
   })
   .state('manual', {
     url: '/manual', 
-    templateUrl: 'views/manual.html'
+    templateUrl: 'views/manual.html',
+    controller: 'ManualCtrl'
   });
   $urlRouterProvider.otherwise('/home');
 })
 
-.controller('HomeCtrl', ['$scope','$cordovaBarcodeScanner','$ionicPlatform',function($scope,$cordovaBarcodeScanner,$ionicPlatform) {
+.controller('HomeCtrl', ['$scope','$state','$cordovaBarcodeScanner','$ionicPlatform',function($scope,$state,$cordovaBarcodeScanner,$ionicPlatform) {
+
+  $scope.goManual = function(){
+    $state.go('manual');
+  }
 
   $scope.scan = function(){
     $ionicPlatform.ready(function() {
@@ -37,4 +42,16 @@ angular.module('starter', ['ionic','ngCordova'])
     });
   }
 
-}]);
+}])
+
+.controller('ManualCtrl', ['$scope','$state',function($scope,$state) {
+
+  $scope.goHome = function(){
+    $state.go('home');
+  }
+
+
+}])
+
+;
+
