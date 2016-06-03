@@ -17,11 +17,20 @@ angular.module('starter', ['ionic','ngCordova'])
     url:'/home',
     templateUrl: 'views/home.html',
     controller: 'HomeCtrl'
+  })
+  .state('manual', {
+    url: '/manual', 
+    templateUrl: 'views/manual.html'
   });
   $urlRouterProvider.otherwise('/home');
 })
 
-.controller('HomeCtrl', ['$scope','$cordovaBarcodeScanner','$ionicPlatform',function($scope,$cordovaBarcodeScanner,$ionicPlatform) {
+.controller('HomeCtrl', ['$scope','$cordovaBarcodeScanner','$ionicPlatform',function($scope,$state,$cordovaBarcodeScanner,$ionicPlatform) {
+
+  $scope.goManual = function() {
+    console.log('hello');
+    $state.go("/tab/newpost");
+  }
 
   $scope.scan = function(){
     $ionicPlatform.ready(function() {
