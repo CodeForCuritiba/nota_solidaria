@@ -25,12 +25,7 @@ angular.module('starter', ['ionic','ngCordova'])
   $urlRouterProvider.otherwise('/home');
 })
 
-.controller('HomeCtrl', ['$scope','$cordovaBarcodeScanner','$ionicPlatform',function($scope,$state,$cordovaBarcodeScanner,$ionicPlatform) {
-
-  $scope.goManual = function() {
-    console.log('hello');
-    $state.go("/tab/newpost");
-  }
+.controller('HomeCtrl', ['$scope','$cordovaBarcodeScanner','$ionicPlatform',function($scope,$cordovaBarcodeScanner,$ionicPlatform) {
 
   $scope.scan = function(){
     $ionicPlatform.ready(function() {
