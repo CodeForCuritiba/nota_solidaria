@@ -13,23 +13,40 @@ angular.module('starter', ['ionic','ngCordova'])
 
 .config(function($stateProvider, $urlRouterProvider){
   $stateProvider
-  .state('home',{
-    url:'/home',
-    templateUrl: 'views/home.html',
-    controller: 'HomeCtrl'
-  })
-  .state('manual', {
-    url: '/manual', 
-    templateUrl: 'views/manual.html',
-    controller: 'ManualCtrl'
-  });
-  $urlRouterProvider.otherwise('/home');
+    .state('app', {
+      url: '/app',
+      abstract: true,
+      templateUrl: 'views/menu.html',
+      controller: 'AppCtrl'
+    })
+    .state('app.scan',{
+      url:'/scan',
+      views: {
+        'menuContent': {
+          templateUrl: 'views/scan.html',
+          controller: 'ScanCtrl'
+        }
+      }
+    })
+    .state('app.manual', {
+      url: '/manual', 
+      views: {
+        'menuContent': {
+          templateUrl: 'views/manual.html',
+          controller: 'ManualCtrl'
+        }
+      }
+    });
+  $urlRouterProvider.otherwise('/app/scan');
 })
 
-.controller('HomeCtrl', ['$scope','$state','$cordovaBarcodeScanner','$ionicPlatform',function($scope,$state,$cordovaBarcodeScanner,$ionicPlatform) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+})
+
+.controller('ScanCtrl', ['$scope','$state','$cordovaBarcodeScanner','$ionicPlatform',function($scope,$state,$cordovaBarcodeScanner,$ionicPlatform) {
 
   $scope.goManual = function(){
-    $state.go('manual');
+    $state.go('app.manual');
   }
 
   $scope.scan = function(){
@@ -47,7 +64,7 @@ angular.module('starter', ['ionic','ngCordova'])
 .controller('ManualCtrl', ['$scope','$state',function($scope,$state) {
 
   $scope.goHome = function(){
-    $state.go('home');
+    $state.go('app.scan');
   }
 
 
