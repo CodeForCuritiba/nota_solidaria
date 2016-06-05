@@ -1,13 +1,23 @@
 <ion-view view-title="Doação manual">
 
   <ion-nav-buttons side="left">
-    <button menu-toggle="left" class="button icon ion-navicon"></button>
+    <button menu-toggle="left" class="button icon ion-person"></button>
   </ion-nav-buttons>
   <ion-nav-buttons side="secondary">
     <a nav-direction="exit" class="button icon ion-qr-scanner" ng-click="goHome()"></a>
   </ion-nav-buttons>
 
-  <ion-content>
-      Manual !!!
-   </ion-content>
+  <ion-content class="padding">
+    <form> 
+      <div class="list">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Chave</span>
+          <input type="text" placeholder="12345678901234567890123456789012345678901234">
+        </label>
+      </div>
+      <button class="button button-block button-positive button-disable">
+        Mandar
+      </button>
+    </form>
+  </ion-content>
 </ion-view>

@@ -43,9 +43,13 @@ angular.module('app', ['ionic','ngCordova'])
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 })
 
-.controller('ScanCtrl', ['$scope','$state','$cordovaBarcodeScanner','$ionicPlatform',function($scope,$state,$cordovaBarcodeScanner,$ionicPlatform) {
+.controller('ScanCtrl', ['$scope','$ionicHistory','$state','$cordovaBarcodeScanner','$ionicPlatform',
+  function($scope,$ionicHistory,$state,$cordovaBarcodeScanner,$ionicPlatform) {
 
   $scope.goManual = function(){
+    $ionicHistory.nextViewOptions({
+        disableAnimate: true
+    });
     $state.go('app.manual');
   }
 
@@ -61,9 +65,12 @@ angular.module('app', ['ionic','ngCordova'])
 
 }])
 
-.controller('ManualCtrl', ['$scope','$state',function($scope,$state) {
+.controller('ManualCtrl', ['$scope','$ionicHistory','$state',function($scope,$ionicHistory,$state) {
 
   $scope.goHome = function(){
+    $ionicHistory.nextViewOptions({
+        disableAnimate: true
+    });
     $state.go('app.scan');
   }
 
