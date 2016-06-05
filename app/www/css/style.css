@@ -1,3 +1,7 @@
 /* Empty. Add your own CSS if you like */
 
+.bar-energized { background-color: #fcc70e; }
+.button.button-balanced { background-color: #9db13b; border: none;}
+.main-bar .bar .title, .main-bar .bar-energized .button { color: #0059a9; }
+
 .my_footer h1.title { font-size: 10px; }
