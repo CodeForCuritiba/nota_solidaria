@@ -40,8 +40,16 @@ angular.module('app', ['ionic','ngCordova'])
   $urlRouterProvider.otherwise('/app/scan');
 })
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
-})
+.controller('AppCtrl', ['$scope', '$window', '$ionicModal', '$timeout', function($scope, $window, $ionicModal, $timeout) {
+
+    if ($window.localStorage && $window.localStorage.getItem('user')) $scope.user = JSON.parse($window.localStorage.getItem('user'));
+
+    $scope.updateProfile = function(user){
+        $window.localStorage.setItem('user', JSON.stringify(user)); 
+        console.log(user);
+      };
+
+}])
 
 .controller('ScanCtrl', ['$scope','$ionicHistory','$state','$cordovaBarcodeScanner','$ionicPlatform',
   function($scope,$ionicHistory,$state,$cordovaBarcodeScanner,$ionicPlatform) {
