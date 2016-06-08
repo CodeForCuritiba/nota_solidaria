@@ -45,14 +45,14 @@ angular.module('app', ['ionic','ngCordova'])
     if ($window.localStorage && $window.localStorage.getItem('user')) $scope.user = JSON.parse($window.localStorage.getItem('user'));
 
     $scope.updateProfile = function(user){
-        $window.localStorage.setItem('user', JSON.stringify(user)); 
-        console.log(user);
-      };
+      $window.localStorage.setItem('user', JSON.stringify(user)); 
+      console.log(user);
+    };
 
 }])
 
-.controller('ScanCtrl', ['$scope','$ionicHistory','$state','$cordovaBarcodeScanner','$ionicPlatform',
-  function($scope,$ionicHistory,$state,$cordovaBarcodeScanner,$ionicPlatform) {
+.controller('ScanCtrl', ['$scope', '$window','$ionicPopup','$ionicHistory','$state','$cordovaBarcodeScanner','$ionicPlatform',
+  function($scope,$window,$ionicPopup,$ionicHistory,$state,$cordovaBarcodeScanner,$ionicPlatform) {
 
   $scope.goManual = function(){
     $ionicHistory.nextViewOptions({
@@ -63,11 +63,53 @@ angular.module('app', ['ionic','ngCordova'])
 
   $scope.scan = function(){
     $ionicPlatform.ready(function() {
-      $cordovaBarcodeScanner.scan().then(function(barcodeData) {
-          alert(JSON.stringify(barcodeData));
-      }, function(error) {
-          alert(JSON.stringify(error));
-      });
+
+      var donateFromUrl = function(url) {
+        var nota = { 'url': url };
+        if (chNFe = /chNFe=([^&]+)/.exec(url)[1]) {
+          nota['NFe'] = chNFe;
+          nota['NFe_str'] = chNFe.replace(/[^\d0-9]/g, '').replace(/(.{4})/g, '$1 ').trim();
+        }
+        if (vNF = /vNF=([^&]+)/.exec(url)[1]) nota['value'] = vNF;
+
+        var confirmPopup = $ionicPopup.confirm({
+           template: 'Doar sua nota fiscal<br>de <strong>R$' + nota.value + 
+                    '</strong> para <strong>ACRIDAS</strong>.<br><br><small>NFe: '+nota.NFe_str+'</small>',
+         });
+
+        confirmPopup.then(function(res) {
+          if(res) {
+            if (!$scope.user.notas) $scope.user.notas = {};
+            $scope.user.notas[nota.NFe] = nota;
+            $scope.updateProfile($scope.user);
+
+            var alertPopup = $ionicPopup.alert({
+                 title: 'Obrigado !',
+                 template: '<img src="http://lorempixel.com/200/200/people/" />'
+            });
+          }
+        });
+      }; 
+
+      if (typeof cordova !== 'undefined') {
+        $cordovaBarcodeScanner.scan().then(function(barcodeData) {
+
+            if (barcodeData) {
+
+              if ( (barcodeData["cancelled"] == false) && barcodeData['text']) {
+                url = barcodeData['text'];
+                donateFromUrl(url);
+              }
+            }
+
+        }, function(error) {
+            alert(JSON.stringify(error));
+        });
+      } else {
+        url = "http://www.dfeportal.fazenda.pr.gov.br/dfe-portal/rest/servico/consultaNFCe?chNFe=41160579430682011400650010005451821005451825&nVersao=100&tpAmb=1&dhEmi=323031362d30352d31345431323a33303a32312d30333a3030&vNF=107.59&vICMS=0.50&digVal=32335937666347754b67564c504b50505369312b535679496b314d3d&cIdToken=000002&cHashQRCode=AD63C9270BBE2A05AF9C885B9FB563B4E28B3265";
+        donateFromUrl(url);
+      }
+
     });
   }
 
