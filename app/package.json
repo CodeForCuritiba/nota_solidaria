@@ -14,5 +14,11 @@
     "gulp-util": "^2.2.14",
     "shelljs": "^0.3.0"
   },
-  "cordovaPlugins": []
+  "cordovaPlugins": [
+    {
+      "locator": "https://git-wip-us.apache.org/repos/asf/cordova-plugin-inappbrowser.git",
+      "id": "cordova-plugin-inappbrowser"
+    }
+  ],
+  "cordovaPlatforms": []
 }

@@ -23,6 +23,14 @@ module.exports = [
         "clobbers": [
             "cordova.plugins.barcodeScanner"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+        "id": "cordova-plugin-inappbrowser.inappbrowser",
+        "clobbers": [
+            "cordova.InAppBrowser.open",
+            "window.open"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -31,7 +39,8 @@ module.exports.metadata =
     "com.ionic.keyboard": "1.0.4",
     "org.apache.cordova.console": "0.2.13",
     "org.apache.cordova.device": "0.3.0",
-    "com.phonegap.plugins.barcodescanner": "2.0.1"
-}
+    "com.phonegap.plugins.barcodescanner": "2.0.1",
+    "cordova-plugin-inappbrowser": "1.4.1-dev"
+};
 // BOTTOM OF METADATA
 });

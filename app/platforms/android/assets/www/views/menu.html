@@ -1,0 +1,40 @@
+<ion-side-menus>
+
+   <ion-side-menu side="left">
+      <ion-header-bar class="bar-dark">
+        <h1 class="title">Perfil</h1>
+      </ion-header-bar>
+      <ion-content>
+        <div class="list">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Nome</span>
+            <input type="text" ng-model="user.name" placeholder="João Da Silva" ng-change="updateProfile(user)">
+          </label>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Telefone</span>
+            <input type="text" ng-model="user.fone" placeholder="41 9876 5432" ng-change="updateProfile(user)">
+          </label>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Email</span>
+            <input type="text" ng-model="user.email" placeholder="joao@angel.br" ng-change="updateProfile(user)">
+          </label>
+        </div>
+      </ion-content>
+   </ion-side-menu>
+
+   <ion-side-menu-content>
+
+    <ion-nav-bar class="main-bar bar-energized">
+    </ion-nav-bar>
+
+    <ion-nav-view name="menuContent"></ion-nav-view>
+
+    <ion-footer-bar class="footer-custom">
+      <h1 class="title">Nota solid&#xE1;ria oferecida pelo <a href="https://www.facebook.com/Code-For-Curitiba-728703680591258" target="_system">Code For Curitiba</a></h1>
+    </ion-footer-bar>
+
+   </ion-side-menu-content>
+
+    
+
+</ion-side-menus>

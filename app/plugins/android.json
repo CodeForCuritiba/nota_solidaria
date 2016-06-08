@@ -551,6 +551,9 @@
         },
         "com.phonegap.plugins.barcodescanner": {
             "PACKAGE_NAME": "com.ionicframework.ionicbarcodescannerapp822631"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.ionicframework.ionicbarcodescannerapp822631"
         }
     },
     "dependent_plugins": {}

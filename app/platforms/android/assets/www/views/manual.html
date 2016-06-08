@@ -1,0 +1,25 @@
+<ion-view view-title="Doação manual">
+
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button icon button-icon ion-person"></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="secondary">
+    <a nav-direction="exit" class="button icon button-icon ion-qr-scanner" ng-click="goHome()"></a>
+  </ion-nav-buttons>
+
+  <ion-content class="padding">
+    <form> 
+      <div class="list">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Chave</span>
+          <input type="text" placeholder="12345678901234567890123456789012345678901234">
+        </label>
+      </div>
+      <div class="text-right">
+        <button class="button button-balanced button-disable">
+          Analizar
+        </button>
+      </div>
+    </form>
+  </ion-content>
+</ion-view>

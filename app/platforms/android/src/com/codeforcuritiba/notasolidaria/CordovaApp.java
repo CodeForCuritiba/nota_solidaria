@@ -17,7 +17,7 @@
        under the License.
  */
 
-package com.ionicframework.ionicbarcodescannerapp822631;
+package com.codeforcuritiba.notasolidaria;
 
 import android.os.Bundle;
 import org.apache.cordova.*;
