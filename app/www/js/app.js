@@ -126,6 +126,10 @@ angular.module('app', ['ionic','ngCordova'])
 
 .controller('ManualCtrl', ['$scope','$ionicHistory','$state',function($scope,$ionicHistory,$state) {
 
+  $scope.chaveOK = function(form) {
+    return !form.chave.$error.required && !form.chave.$error.minlength && !form.chave.$error.maxlength    
+  }
+
   $scope.goHome = function(){
     $ionicHistory.nextViewOptions({
         disableAnimate: true
