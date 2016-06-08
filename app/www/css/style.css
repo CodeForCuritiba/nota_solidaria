@@ -9,3 +9,10 @@
 .energized, a.energized {
     color: #fcc70e;
 }
+
+img.content-img-header  {
+    width: 200px;
+    margin: auto;
+    display: block;
+    max-width: 100%;
+}

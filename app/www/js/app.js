@@ -51,6 +51,19 @@ angular.module('app', ['ionic','ngCordova'])
       return Object.keys(user.notas).length > 0;
     }
 
+    $scope.removeNotas = function(user) {
+      var removeNotasPopup = $ionicPopup.confirm({
+        title: 'Você quer remover todas as notas do seu histórico',
+      });
+
+      removeNotasPopup.then(function(res) {
+        if(res) {
+          user.notas = {};
+          $scope.updateProfile(user);
+        }
+      });
+    }
+
     $scope.$on('confirmNota', function(event, args) {
       var nota  = args.shift();
       var confirmPopup = $ionicPopup.confirm({
