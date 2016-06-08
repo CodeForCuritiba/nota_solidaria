@@ -8,7 +8,7 @@
   </ion-nav-buttons>
 
   <ion-content class="padding">
-    <form name="manualForm"> 
+    <form name="manualForm" ng-submit="submitChave(chave)"> 
       <div class="list">
         <label class="item item-input item-stacked-label">
           <span class="input-label">Chave</span>
@@ -17,7 +17,7 @@
         </label>
       </div>
       <div class="padding">
-        <p ng-show="!chaveOK(manualForm)">
+        <p class="energized" ng-show="!chaveOK(manualForm)">
           A chave do cupom fiscal é uma sequência de 44 números.
         </p>
         <p class="balanced" ng-show="chaveOK(manualForm)">

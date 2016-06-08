@@ -5,3 +5,7 @@
 .main-bar .bar .title, .main-bar .bar-energized .button { color: #0059a9; }
 
 .footer-custom h1.title { font-size: 10px !important;}
+
+.energized, a.energized {
+    color: #fcc70e;
+}

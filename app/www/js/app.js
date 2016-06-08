@@ -40,7 +40,7 @@ angular.module('app', ['ionic','ngCordova'])
   $urlRouterProvider.otherwise('/app/scan');
 })
 
-.controller('AppCtrl', ['$scope', '$window', '$ionicModal', '$timeout', function($scope, $window, $ionicModal, $timeout) {
+.controller('AppCtrl', ['$scope', '$window', '$ionicModal', '$timeout' ,'$ionicPopup', function($scope, $window, $ionicModal, $timeout, $ionicPopup) {
 
     $scope.updateProfile = function(user){
       $window.localStorage.setItem('user', JSON.stringify(user)); 
@@ -51,12 +51,34 @@ angular.module('app', ['ionic','ngCordova'])
       return Object.keys(user.notas).length > 0;
     }
 
+    $scope.$on('confirmNota', function(event, args) {
+      var nota  = args.shift();
+      var confirmPopup = $ionicPopup.confirm({
+        template: 'Doar sua nota fiscal<br>de <strong>R$' + nota.value + 
+                 '</strong> para <strong>ACRIDAS</strong>.<br><br><small>NFe: '+nota.NFe_str+'</small>',
+      });
+
+      confirmPopup.then(function(res) {
+        if(res) {
+          if (!$scope.user.notas) $scope.user.notas = {};
+          $scope.user.notas[nota.NFe] = nota;
+          $scope.updateProfile($scope.user);
+
+          var alertPopup = $ionicPopup.alert({
+               title: 'Obrigado por sua doação!',
+               template: '<img src="http://lorempixel.com/200/200/people/" />'
+          });
+        }
+      });
+      
+    });
+
     if ($window.localStorage && $window.localStorage.getItem('user')) $scope.user = JSON.parse($window.localStorage.getItem('user'));
 
 }])
 
-.controller('ScanCtrl', ['$scope', '$window','$ionicPopup','$ionicHistory','$state','$cordovaBarcodeScanner','$ionicPlatform',
-  function($scope,$window,$ionicPopup,$ionicHistory,$state,$cordovaBarcodeScanner,$ionicPlatform) {
+.controller('ScanCtrl', ['$scope', '$window','$ionicHistory','$state','$cordovaBarcodeScanner','$ionicPlatform',
+  function($scope,$window,$ionicHistory,$state,$cordovaBarcodeScanner,$ionicPlatform) {
 
   $scope.goManual = function(){
     $ionicHistory.nextViewOptions({
@@ -76,23 +98,7 @@ angular.module('app', ['ionic','ngCordova'])
         }
         if (vNF = /vNF=([^&]+)/.exec(url)[1]) nota['value'] = vNF;
 
-        var confirmPopup = $ionicPopup.confirm({
-           template: 'Doar sua nota fiscal<br>de <strong>R$' + nota.value + 
-                    '</strong> para <strong>ACRIDAS</strong>.<br><br><small>NFe: '+nota.NFe_str+'</small>',
-         });
-
-        confirmPopup.then(function(res) {
-          if(res) {
-            if (!$scope.user.notas) $scope.user.notas = {};
-            $scope.user.notas[nota.NFe] = nota;
-            $scope.updateProfile($scope.user);
-
-            var alertPopup = $ionicPopup.alert({
-                 title: 'Obrigado por sua doação!',
-                 template: '<img src="http://lorempixel.com/200/200/people/" />'
-            });
-          }
-        });
+        $scope.$emit('confirmNota', [nota]);
       }; 
 
       if (typeof cordova !== 'undefined') {
@@ -135,6 +141,16 @@ angular.module('app', ['ionic','ngCordova'])
         disableAnimate: true
     });
     $state.go('app.scan');
+  }
+
+  $scope.submitChave = function(chave) {
+    var nota = {
+      NFe: chave.replace(/ /g,''),
+      NFe_str: chave,
+    }
+    console.log($scope.chave);
+    $scope.chave = null;
+    $scope.$emit('confirmNota', [ nota ]);
   }
 
 }])
