@@ -13,7 +13,7 @@ Ionic project
 - Upload project `git clone https://github.com/CodeForCuritiba/nota_solidaria.git`
 - Go to app directory `cd nota_solidaria/app`
 
-You may want to install the project API contained in (Nota Solidaria Portal)[https://github.com/CodeForCuritiba/nota_solidaria_portal]
+You may want to install the project API contained in [Nota Solidaria Portal][(ttps://github.com/CodeForCuritiba/nota_solidaria_portal)
 
 
 ### Environment configuration
