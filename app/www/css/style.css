@@ -16,3 +16,9 @@ img.content-img-header  {
     display: block;
     max-width: 100%;
 }
+
+.menu-left .bar .spinner {
+    position: absolute;
+    right: 10px;
+    top: 7px;
+}
