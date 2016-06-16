@@ -17,8 +17,14 @@
         </label>
       </div>
       <div class="padding">
-        <p class="energized" ng-show="!chaveOK(manualForm)">
+        <p class="assertive" ng-show="!chaveUFOK(manualForm)">
+          O cupom fiscal deve ser emitido no Paraná
+        </p>
+        <p class="assertive" ng-show="!chaveLengthOK(manualForm)">
           A chave do cupom fiscal é uma sequência de 44 números.
+        </p>
+        <p class="assertive" ng-show="!chaveFormatOK(manualForm)">
+          O formato da chave do seu cupom não parece correto.
         </p>
         <p class="balanced" ng-show="chaveOK(manualForm)">
           Chave OK!
