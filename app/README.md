@@ -13,9 +13,13 @@ Ionic project
 - Upload project `git clone https://github.com/CodeForCuritiba/nota_solidaria.git`
 - Go to app directory `cd nota_solidaria/app`
 
+You may want to install the project API contained in [Nota Solidaria Portal](https://github.com/CodeForCuritiba/nota_solidaria_portal)
+
+
 ### Environment configuration
 
 - copy `config/template.json` to `config/localdev.json`
+- edit `config/localdev.json`
 - run `gulp replace` => this will update files with you configuration
 
 ## How to test
@@ -38,6 +42,12 @@ For info:
 Run `ionic server`
 
 * Note: scan doesn't work in browser
+
+#### Bypass CORS limitation
+
+Browsers block cross domains ajax calls. This is call CROS (Cross Origin Resource Sharing). There should be some http header configuration solution for that but we couldn't make it work. To bypass the problem with Chrome you can use extension [Allow-Control-Allow-Origin: *](https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi)
+
+There is no problem with Android and IOs apps.
 
 ### On your phone
 
