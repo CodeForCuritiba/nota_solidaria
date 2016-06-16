@@ -13,6 +13,10 @@ Ionic project
 - Upload project `git clone https://github.com/CodeForCuritiba/nota_solidaria.git`
 - Go to app directory `cd nota_solidaria/app`
 
+### Environment configuration
+
+- copy `config/template.json` to `config/localdev.json`
+- run `gulp replace` => this will update files with you configuration
 
 ## How to test
 
@@ -38,5 +42,7 @@ Run `ionic server`
 ### On your phone
 
 1. Install Ionic View app on your phone
-2. Run `ionic upload`
-3. On Ionic View app on your phone, `sync` app and `view`.
+2. Run `gulp replace --env production` (or whatever environment config you want to use)
+3. Run `ionic upload`
+4. Run `gulp replace` to revert to local configuration
+5. On Ionic View app on your phone, `sync` app and `view`.
