@@ -22,3 +22,10 @@ img.content-img-header  {
     right: 10px;
     top: 7px;
 }
+
+.small-chave {
+    text-align: center;
+    width: 100%;
+    display: block;
+    color: grey;
+}

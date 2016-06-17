@@ -113,14 +113,15 @@ angular.module('app', ['ionic','ngCordova','constants'])
     $scope.$on('confirmNota', function(event, args) {
       var nota  = args.shift();
       var confirmPopup = $ionicPopup.confirm({
-        template: 'Doar sua nota fiscal<br>de <strong>R$' + nota.value + 
-                 '</strong> para <strong>ACRIDAS</strong>.<br><br><small>NFe: '+nota.NFe_str+'</small>',
+        template: 'Doar sua nota fiscal<br>' +
+                  (nota.value ? 'de <strong>R$' + nota.value + '</strong> ' : '') + 
+                 'para <strong>ACRIDAS</strong>.<br><br><small>NFe: '+nota.print_nfe+'</small>',
       });
 
       confirmPopup.then(function(res) {
         if(res) {
           if (!$scope.user.notas) $scope.user.notas = {};
-          $scope.user.notas[nota.NFe] = nota;
+          $scope.user.notas[nota.nfe] = nota;
           $scope.updateProfile($scope.user);
 
           var alertPopup = $ionicPopup.alert({

@@ -1,46 +1,34 @@
 angular.module('app')
 
-.controller('ManualCtrl', ['$scope','$ionicHistory','$state',function($scope,$ionicHistory,$state) {
+.controller('ManualCtrl', ['$scope','Nota','$ionicHistory','$state',function($scope,Nota,$ionicHistory,$state) {
 
-  $scope.parseChave = function(chave) {
-    if (!chave || chave == 'undefined') chave = '';
-    else chave = chave.replace(/ /g,'');
-
-    return {
-      'uf' : chave.slice(0,2),
-      'year' : chave.slice(2,4),
-      'month' : chave.slice(4,6),
-      'cnpj' : chave.slice(6,20),
-      'modelo' : chave.slice(20,22),
-      'serie' : chave.slice(22,24),
-      'num' : chave.slice(24,33),
-      'emi' : chave.slice(33,34),
-      'cod' : chave.slice(34,43),
-      'dv' : chave.slice(43)
-    }
-  }
   $scope.chaveUFOK = function(form) {
-    chave = $scope.parseChave(form.chave.$viewValue);
+    chave = Nota.parseChave(form.chave.$viewValue);
     return chave.uf.length < 2 || (parseInt(chave.uf) == 41);
   }
 
   $scope.chaveFormatOK = function(form) {
-    chave = $scope.parseChave(form.chave.$viewValue);
-    monthOK = (parseInt(chave.month)>0) && (parseInt(chave.month)<13);
+    value = (form.chave.$viewValue) ? form.chave.$viewValue.replace(/[^\d0-9]/g, '') : '';
+
+    // this shouldn't be here but I didn't manage to do better
+    $scope.printed_chave = value.replace(/(.{4})/g, '$1 ').trim();
+
+    chave = Nota.parseChave(value);
+    monthOK = (chave.month>0) && (chave.month<13);
     var today = new Date();
-    var yearnow = today.getFullYear().toString().slice(2);
-    yearOK = parseInt(chave.year)<=yearnow;
-    return chave.month.length < 2 || (monthOK && yearOK);
+    yearOK = chave.year<=today.getFullYear();
+    return value.length < 6 || (monthOK && yearOK);
   }
 
+
   $scope.chaveLengthOK = function(form) {
-    return !form.chave.$error.minlength && !form.chave.$error.maxlength    
+    value = (form.chave.$viewValue) ? form.chave.$viewValue.replace(/[^\d0-9]/g, '') : '';
+    return !form.chave.$error.required && value.length == 44;    
   }
 
   $scope.chaveOK = function(form) {
-    return !form.chave.$error.required && $scope.chaveLengthOK(form) && $scope.chaveUFOK(form);
+    return $scope.chaveFormatOK(form) && $scope.chaveUFOK(form) && $scope.chaveLengthOK(form);
   }
-
 
   $scope.goHome = function(){
     $ionicHistory.nextViewOptions({
@@ -50,29 +38,26 @@ angular.module('app')
   }
 
   $scope.submitChave = function(chave) {
-    var nota = {
-      NFe: chave.replace(/ /g,''),
-      NFe_str: chave,
-    }
     $scope.chave = null;
-    $scope.$emit('confirmNota', [ nota ]);
+    $scope.$emit('confirmNota', [ Nota.fromChave(chave) ]);
   }
 
-}])
-
-.directive('notaChave', function() {
-  return {
-    require: 'ngModel',
-    link: function (scope, element, attr, ngModelCtrl) {
-      function fromUser(text) {
-        var transformedInput = text.replace(/[^0-9]/g, '').replace(/(.{4})/g, '$1 ').trim();;
-        if(transformedInput !== text) {
-            ngModelCtrl.$setViewValue(transformedInput);
-            ngModelCtrl.$render();
-        }
-        return transformedInput;
+  $scope.toFixed = function (x) {
+    if (Math.abs(x) < 1.0) {
+      var e = parseInt(x.toString().split('e-')[1]);
+      if (e) {
+          x *= Math.pow(10,e-1);
+          x = '0.' + (new Array(e)).join('0') + x.toString().substring(2);
       }
-      ngModelCtrl.$parsers.push(fromUser);
+    } else {
+      var e = parseInt(x.toString().split('+')[1]);
+      if (e > 20) {
+          e -= 20;
+          x /= Math.pow(10,e);
+          x += (new Array(e+1)).join('0');
+      }
     }
-  }; 
-})
+    return x;
+  }
+
+}]);

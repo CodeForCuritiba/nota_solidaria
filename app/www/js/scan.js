@@ -1,7 +1,7 @@
 angular.module('app')
 
-.controller('ScanCtrl', ['$scope', '$window','$ionicHistory','$state','$cordovaBarcodeScanner','$ionicPlatform',
-  function($scope,$window,$ionicHistory,$state,$cordovaBarcodeScanner,$ionicPlatform) {
+.controller('ScanCtrl', ['$scope', 'Nota', '$window','$ionicHistory','$state','$cordovaBarcodeScanner','$ionicPlatform',
+  function($scope,Nota,$window,$ionicHistory,$state,$cordovaBarcodeScanner,$ionicPlatform) {
 
   $scope.goManual = function(){
     $ionicHistory.nextViewOptions({
@@ -14,14 +14,11 @@ angular.module('app')
     $ionicPlatform.ready(function() {
 
       var donateFromUrl = function(url) {
-        var nota = { 'url': url };
         if (chNFe = /chNFe=([^&]+)/.exec(url)[1]) {
-          nota['NFe'] = chNFe;
-          nota['NFe_str'] = chNFe.replace(/[^\d0-9]/g, '').replace(/(.{4})/g, '$1 ').trim();
+          $scope.$emit('confirmNota', [Nota.fromUrl(url)]);
+        } else {
+          alert("O QR Code não foi reconhecido");
         }
-        if (vNF = /vNF=([^&]+)/.exec(url)[1]) nota['value'] = vNF;
-
-        $scope.$emit('confirmNota', [nota]);
       }; 
 
       if (typeof cordova !== 'undefined') {
