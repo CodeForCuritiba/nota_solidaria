@@ -52,30 +52,37 @@ angular.module('app', ['ionic','ngCordova','constants'])
         $scope.syncing = true;
         $scope.pendingsync = false;
         console.log("====> Syncing ",user);
-        $http.post(apiUrl + '/users',JSON.stringify(user)).then(function(resp){
-          console.log('Success'); // JSON object
-          if (resp.data.status == 200) {
-            if (!user._id && resp.data.result._id) user._id = resp.data.result._id;
-          } else {
-            if (resp.data.error_message) message = resp.data.error_message;
-            else message = JSON.stringify(resp);
+
+        if (user._id && (typeof user._id == "string") ) { // create
+          method = "PUT";
+          url = apiUrl + "/doadores/" + user._id;
+        } else {
+          method = "POST";
+          url = apiUrl + "/doadores";
+        }         
+
+        $http({ method: method, url: url, data: user}).
+          then(function(resp){
+            console.log('Success',resp,method); // JSON object
+            if ( resp.data && resp.data._id) {
+              user._id = resp.data._id;
+            }
+            $scope.syncing = false;
+
+            // Test if new things to sync
+            if ($scope.pendingsync) sync(user);
+            else user.sync = true;
+
+            $window.localStorage.setItem('user', JSON.stringify(user)); 
+            console.log(user);
+          }, function(err){
+            console.log("Sync failed",err);
             $ionicPopup.alert({
-                   title: 'Sync Error',
-                   template: message
+               title: 'Sync Error',
+               template: JSON.stringify(err)
             });
-          }
-          $scope.syncing = false;
-
-          // Test if new things to sync
-          if ($scope.pendingsync) sync(user);
-          else user.sync = true;
-
-          $window.localStorage.setItem('user', JSON.stringify(user)); 
-          console.log(user);
-        }, function(err){
-          console.log("Sync failed")
-          $scope.syncing = false;
-        });
+            $scope.syncing = false;
+          });
 
       }
 
@@ -121,13 +128,16 @@ angular.module('app', ['ionic','ngCordova','constants'])
       confirmPopup.then(function(res) {
         if(res) {
           if (!$scope.user.notas) $scope.user.notas = {};
+          var d = new Date();
+          nota.donated_at = d.getTime();
           $scope.user.notas[nota.nfe] = nota;
-          $scope.updateProfile($scope.user);
 
           var alertPopup = $ionicPopup.alert({
                title: 'Obrigado por sua doação!',
                template: '<img src="http://lorempixel.com/200/200/people/" />'
           });
+
+          $scope.updateProfile($scope.user);
         }
       });
       
