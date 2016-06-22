@@ -67,6 +67,7 @@ angular.module('app', ['ionic','ngCordova','constants'])
             if ( resp.data && resp.data._id) {
               user._id = resp.data._id;
             }
+
             $scope.syncing = false;
 
             // Test if new things to sync
