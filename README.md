@@ -7,6 +7,10 @@ Localizada na pasta [app](https://github.com/CodeForCuritiba/nota_solidaria/tree
 
 Instalação e testes [aqui](https://github.com/CodeForCuritiba/nota_solidaria/blob/master/app/README.md)
 
+## Nota Solidária Portal
+
+https://github.com/CodeForCuritiba/nota_solidaria_portal
+
 ## Colaboradores
 
 _**Cada colaborador pode completar a lista abaixo**_
