@@ -7,5 +7,40 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "com.phonegap.plugins.barcodescanner": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/wildabeast/BarcodeScanner.git",
+            "subdir": "."
+        }
+    },
+    "org.apache.cordova.console": {
+        "source": {
+            "type": "registry",
+            "id": "org.apache.cordova.console"
+        }
+    },
+    "org.apache.cordova.device": {
+        "source": {
+            "type": "registry",
+            "id": "org.apache.cordova.device"
+        }
+    },
+    "ionic-plugin-keyboard": {
+        "source": {
+            "type": "registry",
+            "id": "ionic-plugin-keyboard"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-whitelist": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-whitelist"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }
