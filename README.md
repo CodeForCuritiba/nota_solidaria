@@ -1,6 +1,7 @@
 #       NOTA SOLIDÁRIA - Paraná
 
-
+<img src="https://github.com/CodeForCuritiba/nota_solidaria/blob/master/docs/images/openbrazil.jpeg" height="100" alt="Open Brazil">
+<img src="https://github.com/CodeForCuritiba/nota_solidaria/blob/master/docs/images/codeforcuritiba.png" height="100" alt="Code For Curitiba">
 
 **__Versão Alpha__**
 
