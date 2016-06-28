@@ -89,8 +89,7 @@ Identificar formato ideal para campanha de lançamento e venda do app para outra
     - Informações desejadas + beneficios;
     - Informações extras + beneficios.
 
-- Quais são as dificuldades atuais da instituição com a coleta das notas fiscais?# nota_solidaria
-Projeto para escanear as notas fiscais do Paraná para doação
+- Quais são as dificuldades atuais da instituição com a coleta das notas fiscais?
 
 ## Componentes técnicos
 
