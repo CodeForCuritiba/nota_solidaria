@@ -18,7 +18,7 @@ A 1ª fase de desenvolvimento do aplicativo inclui:
 
 ## Público Alvo
 
-Voluntários ativos no Acridas
+- Da versão Alpha: Voluntários ativos no Acridas
 
 ## Stakeholders
 
