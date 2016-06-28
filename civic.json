@@ -1,0 +1,27 @@
+{
+  "name": "Nota Solidária",
+  "description": "Application to scan the Paraná invoices for donation and make quick transfer to NGO for charities.",
+  "license": "https://github.com/CodeForCuritiba/nota_solidaria/blob/master/LICENSE",
+  "status": "Alpha",
+  "repository": "https://github.com/CodeForCuritiba/nota_solidaria",
+  "geography": [],
+  "contact": {
+    "name": "Thierry Delbart",
+    "email": "thierry@thde.pro"
+  },
+  "partners": [
+    {
+      "name": "ACRIDAS",
+      "email": "http://www.acridas.org.br/"
+    }
+  ],
+  "data": [],
+  "tags": [
+    "donation",
+    "NGO",
+    "ionic",
+    "nodejs"
+  ],
+  "links": [],
+  "id": "https://raw.githubusercontent.com/DCgov/civic.json/master/schemas/schema-v1.json"
+}
