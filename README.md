@@ -14,7 +14,7 @@ A 1ª fase de desenvolvimento do aplicativo inclui:
 
 - Desenvolvimento de código que converta foto de uma nota fiscal em dados;
 
-- Criação de banco de dados das notas fiscais recolhidas para recolhimento dos valores no site da prefeitura;
+- Criação de banco de dados das notas fiscais recolhidas para recolhimento dos valores no site do programa "Nota Paraná";
 
 ## Público Alvo
 
