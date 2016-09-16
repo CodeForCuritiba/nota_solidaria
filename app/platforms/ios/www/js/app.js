@@ -40,17 +40,20 @@ angular.module('app', ['ionic','ngCordova','constants'])
   $urlRouterProvider.otherwise('/app/scan');
 })
 
-.controller('AppCtrl', ['$scope', 'apiUrl', '$http','$window', '$ionicModal', '$timeout' ,'$ionicPopup', 
-  function($scope, apiUrl, $http, $window, $ionicModal, $timeout, $ionicPopup) {
+.controller('AppCtrl', ['$scope', 'apiUrl', 'theme', '$http','$window', '$ionicModal', '$timeout' ,'$ionicPopup', 
+  function($scope, apiUrl, theme, $http, $window, $ionicModal, $timeout, $ionicPopup) {
 
     $scope.syncing = false;
     $scope.pendingsync = false;
+
+    $scope.theme = theme;
 
     $scope.syncUser = function(user) {
 
       var sync = function(user) {
         $scope.syncing = true;
         $scope.pendingsync = false;
+
         console.log("====> Syncing ",user);
 
         if (user._id && (typeof user._id == "string") ) { // create
@@ -147,7 +150,7 @@ angular.module('app', ['ionic','ngCordova','constants'])
     if ($window.localStorage && $window.localStorage.getItem('user')) {
       $scope.user = JSON.parse($window.localStorage.getItem('user'));
       if (!$scope.user.sync) $scope.syncUser($scope.user);
-    }
+    } else $scope.user = {};
 
 }]);
 

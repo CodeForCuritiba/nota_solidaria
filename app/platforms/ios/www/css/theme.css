@@ -1,0 +1,8 @@
+
+body { background: #ffffff;}
+.bar.bar-energized { background-color: #0094D9; }
+.button.button-balanced { background-color: #F5ADCC; color: #ffffff;}
+.main-bar .bar .title, .main-bar .bar-energized .button { color: #ffffff; }
+
+.energized, a.energized { color: #0094D9; }
+

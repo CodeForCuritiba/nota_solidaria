@@ -1,17 +1,22 @@
-<ion-view view-title="ACRIDAS">
+
+<ion-view view-title="{{theme.title}}">
 
   <ion-nav-buttons side="left">
     <button menu-toggle="left" class="button icon button-icon ion-person"></button>
   </ion-nav-buttons>
   <ion-nav-buttons side="right">
-    <a nav-direction="enter" class="button icon button-icon ion-edit" ng-click="goManual()"></a>
+    <button menu-toggle="right" class="button icon button-icon ion-navicon-round"></button>
+    <!--a nav-direction="enter" class="button icon button-icon ion-edit" ng-click="goManual()"></a-->
   </ion-nav-buttons>
 
   <ion-content>
       <div class="padding">
-        <img src="img/acridas.png" class="content-img-header"/>
+        <img src="themes/{{theme.name}}/logo.png" class="content-img-header"/>
         <button class="button button-block button-balanced"  ng-click='scan()'>
-          Ler o QR Code
+          Escanear um ticket
+        </button>
+        <button class="button button-block button-balanced" ng-click="goManual()">
+          Doação manual
         </button>
       </div>
   </ion-content>

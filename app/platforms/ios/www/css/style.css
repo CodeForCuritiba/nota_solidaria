@@ -1,17 +1,17 @@
 /* Empty. Add your own CSS if you like */
 
-.bar-energized { background-color: #fcc70e; }
-.button.button-balanced { background-color: #9db13b; border: none; }
-.main-bar .bar .title, .main-bar .bar-energized .button { color: #0059a9; }
+.bar.bar-energized { background-color: #EB2B30; }
+.button.button-balanced { background-color: #83BF38; border: none; }
+.main-bar .bar .title, .main-bar .bar-energized .button { color: white; }
 
 .footer-custom h1.title { font-size: 10px !important;}
 
 .energized, a.energized {
-    color: #fcc70e;
+    color: #EB2B30;
 }
 
 img.content-img-header  {
-    width: 200px;
+    width: 300px;
     margin: auto;
     display: block;
     max-width: 100%;
