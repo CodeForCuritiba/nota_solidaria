@@ -1,0 +1,8 @@
+
+body { background: @@BgColor;}
+.bar.bar-energized { background-color: @@HeaderBgColor; }
+.button.button-balanced { background-color: @@ButtonBgColor; color: @@ButtonColor;}
+.main-bar .bar .title, .main-bar .bar-energized .button { color: @@HeaderColor; }
+
+.energized, a.energized { color: @@HeaderBgColor; }
+

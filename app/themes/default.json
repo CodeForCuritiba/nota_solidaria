@@ -1,0 +1,15 @@
+{
+	"name": "default",
+	"title": "Code For Curitiba",
+	"style": {
+		"background_color": "#fcfcfc",
+		"header": {
+			"background_color": "#EB353D",
+			"text_color": "#fcfcfc"
+		},
+		"button": {
+			"background_color": "#8FC549",
+			"text_color": "#ffffff"
+		}
+	}
+}

@@ -1,0 +1,16 @@
+{
+	"name": "acridas",
+	"title": "Acridas",
+	"style": {
+		"background_color": "#ffffff",
+		"header": {
+			"background_color": "#fcc70e",
+			"text_color": "#0059a9"
+		},
+		"button": {
+			"background_color": "#9db13b",
+			"text_color": "#ffffff"
+		}
+	}
+
+}

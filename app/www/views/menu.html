@@ -19,6 +19,13 @@
             <span class="input-label">Email</span>
             <input type="email" ng-model="user.email" placeholder="joao@angel.br" ng-change="updateProfile(user)">
           </label>
+        </ion-list>
+      </ion-content>
+   </ion-side-menu>
+
+   <ion-side-menu side="right">
+      <ion-content>
+        <ion-list>
           <div class="item item-divider  item-button-right" ng-if="hasNotas(user)">
             Histórico de doações
             <button class="button button-clear button-dark" ng-click="removeNotas(user)">
@@ -33,6 +40,7 @@
         </ion-list>
       </ion-content>
    </ion-side-menu>
+
 
    <ion-side-menu-content>
 
