@@ -150,7 +150,7 @@ angular.module('app', ['ionic','ngCordova','constants'])
     if ($window.localStorage && $window.localStorage.getItem('user')) {
       $scope.user = JSON.parse($window.localStorage.getItem('user'));
       if (!$scope.user.sync) $scope.syncUser($scope.user);
-    }
+    } else $scope.user = {};
 
 }]);
 
