@@ -2,8 +2,8 @@
 
    <ion-side-menu side="left">
       <ion-header-bar class="bar-dark">
-        <h1 class="title">Perfil </h1>
-        <ion-spinner icon="spiral" class="spinner" ng-show="syncing"></ion-spinner>
+        <h1 class="title">Perfil</h1>
+        <button id="sync_btn" class="button icon button-icon ion-loop" ng-click="updateProfile(user)" ng-if="pendingsync"></button>
       </ion-header-bar>
       <ion-content>
         <ion-list>
@@ -19,6 +19,17 @@
             <span class="input-label">Email</span>
             <input type="email" ng-model="user.email" placeholder="joao@angel.br" ng-change="updateProfile(user)">
           </label>
+
+          <li class="item item-toggle">
+             Escaner rápido
+             <label class="toggle toggle-stable">
+               <input type="checkbox" ng-model="multinotas" ng-change="toggleMultinotas()">
+               <div class="track">
+                 <div class="handle"></div>
+               </div>
+             </label>
+          </li>
+
         </ion-list>
       </ion-content>
    </ion-side-menu>

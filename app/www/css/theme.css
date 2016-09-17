@@ -1,8 +1,8 @@
 
-body { background: #ffffff;}
-.bar.bar-energized { background-color: #fcc70e; }
-.button.button-balanced { background-color: #9db13b; color: #ffffff;}
-.main-bar .bar .title, .main-bar .bar-energized .button { color: #0059a9; }
+body { background: #fcfcfc;}
+.bar.bar-energized { background-color: #EB353D; }
+.button.button-balanced { background-color: #8FC549; color: #ffffff;}
+.main-bar .bar .title, .main-bar .bar-energized .button { color: #fcfcfc; }
 
-.energized, a.energized { color: #fcc70e; }
+.energized, a.energized { color: #EB353D; }
 

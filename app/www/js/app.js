@@ -23,8 +23,7 @@ angular.module('app', ['ionic','ngCordova','constants'])
       url:'/scan',
       views: {
         'menuContent': {
-          templateUrl: 'views/scan.html',
-          controller: 'ScanCtrl'
+          templateUrl: 'views/scan.html'
         }
       }
     })
@@ -40,11 +39,12 @@ angular.module('app', ['ionic','ngCordova','constants'])
   $urlRouterProvider.otherwise('/app/scan');
 })
 
-.controller('AppCtrl', ['$scope', 'apiUrl', 'theme', '$http','$window', '$ionicModal', '$timeout' ,'$ionicPopup', 
-  function($scope, apiUrl, theme, $http, $window, $ionicModal, $timeout, $ionicPopup) {
+.controller('AppCtrl', ['$scope', 'apiUrl', 'theme', '$http','$window', '$ionicModal', '$timeout' ,'$ionicPopup', 'Nota','$ionicHistory','$state','$cordovaBarcodeScanner','$ionicPlatform',
+  function($scope, apiUrl, theme, $http, $window, $ionicModal, $timeout, $ionicPopup, Nota,$ionicHistory,$state,$cordovaBarcodeScanner,$ionicPlatform) {
 
     $scope.syncing = false;
     $scope.pendingsync = false;
+    $scope.multinotas = false;
 
     $scope.theme = theme;
 
@@ -81,10 +81,6 @@ angular.module('app', ['ionic','ngCordova','constants'])
             console.log(user);
           }, function(err){
             console.log("Sync failed",err);
-            $ionicPopup.alert({
-               title: 'Sync Error',
-               template: JSON.stringify(err)
-            });
             $scope.syncing = false;
           });
 
@@ -104,6 +100,10 @@ angular.module('app', ['ionic','ngCordova','constants'])
       $scope.syncUser(user);
     };
 
+    $scope.toggleMultinotas = function() {
+      $scope.multinotas = !$scope.multinotas;
+    };
+
     $scope.hasNotas = function(user) {
       return user && user.notas && (Object.keys(user.notas).length > 0);
     }
@@ -121,16 +121,15 @@ angular.module('app', ['ionic','ngCordova','constants'])
       });
     }
 
-    $scope.$on('confirmNota', function(event, args) {
-      var nota  = args.shift();
-      var confirmPopup = $ionicPopup.confirm({
-        template: 'Doar sua nota fiscal<br>' +
-                  (nota.value ? 'de <strong>R$' + nota.value + '</strong> ' : '') + 
-                 'para <strong>ACRIDAS</strong>.<br><br><small>NFe: '+nota.print_nfe+'</small>',
-      });
+    $scope.confirmNota = function(nota) {
+      if (!$scope.multinotas) {
+        var confirmPopup = $ionicPopup.confirm({
+          template: 'Doar sua nota fiscal<br>' +
+                    (nota.value ? 'de <strong>R$' + nota.value + '</strong> ' : '') + 
+                   'para <strong>ACRIDAS</strong>.<br><br><small>NFe: '+nota.print_nfe+'</small>',
+        });
 
-      confirmPopup.then(function(res) {
-        if(res) {
+        confirmPopup.then(function(res) {
           if (!$scope.user.notas) $scope.user.notas = {};
           var d = new Date();
           nota.donated_at = d.getTime();
@@ -141,11 +140,73 @@ angular.module('app', ['ionic','ngCordova','constants'])
                template: '<img src="http://lorempixel.com/200/200/people/" />'
           });
 
-          $scope.updateProfile($scope.user);
-        }
-      });
+          $scope.updateProfile($scope.user);  
+        });
+      } else {
+        if (!$scope.user.notas) $scope.user.notas = {};
+        var d = new Date();
+        nota.donated_at = d.getTime();
+        $scope.user.notas[nota.nfe] = nota;
+
+        $scope.updateProfile($scope.user);  
+
+        if (typeof cordova !== 'undefined') $scope.scan();            
+      }
       
+    };
+
+  $scope.goManual = function(){
+    $ionicHistory.nextViewOptions({
+        disableAnimate: true
     });
+    $state.go('app.manual');
+  }
+
+  $scope.scan = function(){
+    $ionicPlatform.ready(function() {
+
+      var donateFromUrl = function(url) {
+        console.log(/(www.dfeportal.fazenda.pr.gov.br)/.exec(url)[1]);
+        if ( (chNFe = /chNFe=([^&]+)/.exec(url)[1])) {
+          $scope.confirmNota(Nota.fromUrl(url));
+        } else {
+          alert("O QR Code não foi reconhecido.");
+        }
+      }; 
+
+      if (typeof cordova !== 'undefined') {
+        $cordovaBarcodeScanner.scan().then(function(barcodeData) {
+
+            if (barcodeData) {
+
+              // TODO: better testing to see if QR Code OK
+              if (barcodeData["cancelled"] == false) {
+                if (barcodeData['text']) {
+                  url = barcodeData['text'];
+                  donateFromUrl(url);
+                } else {
+                  console.error(barcodeData);
+                }
+              } 
+            }
+
+        }, function(error) {
+            console.error(error);
+            alert("O leitor QRCode falhou. Por favor tente de novo.");
+        }, {
+          "prompt" : "Coloque o qr-code do seu cupom no meio do escaner", // supported on Android only
+          "formats" : "QR_CODE", // default: all but PDF_417 and RSS_EXPANDED
+          "orientation" : "portrait" // Android only (portrait|landscape), default unset so it rotates with the device
+      });
+      } else {
+        // Fake NF to test behavior
+        url = "http://www.dfeportal.fazenda.pr.gov.br/dfe-portal/rest/servico/consultaNFCe?chNFe=41160579430682011400650010005451821005451825&nVersao=100&tpAmb=1&dhEmi=323031362d30352d31345431323a33303a32312d30333a3030&vNF=107.59&vICMS=0.50&digVal=32335937666347754b67564c504b50505369312b535679496b314d3d&cIdToken=000002&cHashQRCode=AD63C9270BBE2A05AF9C885B9FB563B4E28B3265";
+        donateFromUrl(url);
+      }
+
+    });
+  }
+
 
     if ($window.localStorage && $window.localStorage.getItem('user')) {
       $scope.user = JSON.parse($window.localStorage.getItem('user'));
